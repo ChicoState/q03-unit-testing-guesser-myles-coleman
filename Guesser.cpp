@@ -1,5 +1,6 @@
 #include "Guesser.h"
 #include <string>
+#include <cmath>
 
 using std::string;
 
@@ -15,7 +16,38 @@ using std::string;
   has 100, the distance is 10.
 */
 unsigned int Guesser::distance(string guess){
-  return 0;
+
+  int distance = 0;
+
+  //if the strings are identical, the distance is 0
+  if (guess == m_secret) { return 0; }
+
+  //if the strings are the same size, we run a loop
+  if (m_secret.length() == guess.length()) {
+    for (int i = 0; i < guess.length(); i++) {
+      if (m_secret[i] != guess[i]) {
+        distance++;
+      }
+    }
+  } else {
+    //if there is a > 1 difference in char length between the two, then add it to distance
+    int counter = m_secret.length() - guess.length();
+    distance += abs(counter);
+    
+    
+  }
+
+
+  //also need to check if both strings are the same size
+
+  //hello and !hello should return a distance of 5
+  //hello and hello! should return a distance of 1
+  //hello and hello should return a distance of 0
+
+
+
+
+  return distance;
 }
 
 /*
