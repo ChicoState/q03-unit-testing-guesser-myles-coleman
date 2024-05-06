@@ -31,8 +31,8 @@ unsigned int Guesser::distance(string guess){
   }
 
   //if the strings have different distances, add the difference to the distance variable
-  if (m_secret.length() < guess.length()) { //loop using the string with the shortest length
-    if (m_secret.length() != guess.length()) {
+  if (m_secret.length() != guess.length()) {
+    if (m_secret.length() < guess.length()) { //loop using the string with the shortest length
       for (int i = 0; i < m_secret.length(); i++) {
         if (m_secret[i] != guess[i]) {
           distance++;
@@ -40,9 +40,7 @@ unsigned int Guesser::distance(string guess){
       }
       int num_diff = m_secret.length() - guess.length();
       distance += abs(num_diff);
-    }
-  } else {
-    if (m_secret.length() != guess.length()) {
+    } else {// if guess is shorter than secret
       for (int i = 0; i < guess.length(); i++) {
         if (m_secret[i] != guess[i]) {
           distance++;

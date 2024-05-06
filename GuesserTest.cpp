@@ -22,6 +22,41 @@ TEST(GuesserTest, matchCorrect) {
 	ASSERT_EQ(true, actual);
 }
 
+//test same length distance 1
+TEST(GuesserTest, matchSameLengthDistanceOne) {
+	Guesser secret("hello");
+	bool actual = secret.match("hel!o");
+	ASSERT_EQ(false, actual);
+}
+
+//test shorter guess
+TEST(GuesserTest, oneCharShorter) {
+	Guesser secret("hello");
+	bool actual = secret.match("hell");
+	ASSERT_EQ(false, actual);
+}
+
+//test shorter guess with diff char
+TEST(GuesserTest, oneCharShorterDiffChar) {
+	Guesser secret("hello");
+	bool actual = secret.match("hel!");
+	ASSERT_EQ(false, actual);
+}
+
+//test longer guess
+TEST(GuesserTest, oneCharLonger) {
+	Guesser secret("hello");
+	bool actual = secret.match("helloo");
+	ASSERT_EQ(false, actual);
+}
+
+//test longer guess with diff char
+TEST(GuesserTest, oneCharLongerDiffChar) {
+	Guesser secret("hello");
+	bool actual = secret.match("hello!");
+	ASSERT_EQ(false, actual);
+}
+
 //test distance 1
 TEST(GuesserTest, matchDistanceOne) {
 	Guesser secret("hello");
